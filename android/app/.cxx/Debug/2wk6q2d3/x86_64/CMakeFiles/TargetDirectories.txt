@@ -1,2 +1,0 @@
-C:/source/Group_Project/hiru_super/android/app/.cxx/Debug/2wk6q2d3/x86_64/CMakeFiles/edit_cache.dir
-C:/source/Group_Project/hiru_super/android/app/.cxx/Debug/2wk6q2d3/x86_64/CMakeFiles/rebuild_cache.dir

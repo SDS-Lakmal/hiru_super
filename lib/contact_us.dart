@@ -13,7 +13,7 @@ class CustomHeader extends StatelessWidget implements PreferredSizeWidget {
       title: Column(
         mainAxisSize: MainAxisSize.min, // Avoid extra space
         children: [
-          const SizedBox(height: 0.1), // Move text up
+          const SizedBox(height: 5.0), // Move text up
           const Text(
             'Contact Us',
             style: TextStyle(
