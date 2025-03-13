@@ -1,0 +1,23 @@
+ # Flutter related files
+.dart_tool/
+.packages
+pubspec.lock
+
+# Generated files
+/build/
+/ios/Flutter/Flutter.podspec
+/ios/.symlinks/
+/ios/Pods/
+/ios/Runner.xcworkspace/
+.android/
+android/.gradle/
+android/app/debug.keystore
+
+# IDE files
+.idea/
+*.iml
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
