@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'client/user_home.dart';
 import 'admin/discount.dart';
 import 'client/contact_us.dart';
+import 'client/terms_and_conditions.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,10 +18,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Grocery App',
       theme: ThemeData(primarySwatch: Colors.green),
-      home: UserHome(), // <-- Keep original home page
+      home: UserHome(), // <-- Your original home page
       routes: {
         '/admin': (context) => AdminUpload(),
-        '/contact': (context) => ContactUsPage(), // <-- Add route for contact
+        '/contact': (context) => ContactUsPage(),
+        '/terms': (context) => TermsAndConditionsPage(), // <- New route
       },
     );
   }
