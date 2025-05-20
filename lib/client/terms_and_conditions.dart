@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ContactUsPage extends StatelessWidget {
+class TermsAndConditionsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,10 +30,9 @@ class ContactUsPage extends StatelessWidget {
               "We reserve the right to refuse service to anyone violating our policies or engaging in disruptive behavior.",
             ),
             bulletPoint(
-              " Prices, offers, and promotions are subject to change without prior notice.",
+              "Prices, offers, and promotions are subject to change without prior notice.",
             ),
             SizedBox(height: 16),
-
             sectionTitle("2. Product Purchases"),
             bulletPoint("All purchases are subject to product availability."),
             bulletPoint(
@@ -42,17 +41,15 @@ class ContactUsPage extends StatelessWidget {
             bulletPoint(
               "Expired or damaged products should be reported immediately for exchange or refund.",
             ),
-
             SizedBox(height: 16),
             sectionTitle("3. Pricing and Payment"),
             bulletPoint(
               "All prices are in Sri Lankan Rupees and include applicable taxes.",
             ),
-            bulletPoint("We accept cash, credit/debit cards"),
+            bulletPoint("We accept cash, credit/debit cards."),
             bulletPoint(
               "In case of pricing errors, we reserve the right to correct the price before completing the sale.",
             ),
-
             SizedBox(height: 16),
             sectionTitle("4. Returns and Refunds"),
             bulletPoint(
@@ -64,7 +61,6 @@ class ContactUsPage extends StatelessWidget {
             bulletPoint(
               "Refunds will be issued via the original payment method.",
             ),
-
             SizedBox(height: 16),
             sectionTitle("5. Online Orders and Delivery"),
             bulletPoint(

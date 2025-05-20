@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+// 👉 IMPORT the ContactUsPage and TermsAndConditionsPage
+import 'contact_us.dart';
+import 'terms_and_conditions.dart';
+
 class UserHome extends StatefulWidget {
   @override
   _UserHomeState createState() => _UserHomeState();
@@ -25,7 +29,7 @@ class _UserHomeState extends State<UserHome> {
     });
 
     if (index == 0) {
-      // Home page
+      // Home page selected
     } else {
       Navigator.push(
         context,
@@ -35,10 +39,22 @@ class _UserHomeState extends State<UserHome> {
   }
 
   void _navigateToMenuItem(String title) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (_) => UnderDevelopingPage(title: title)),
-    );
+    if (title == 'Contact Us') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => ContactUsPage()),
+      );
+    } else if (title == 'Terms & Conditions') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => TermsAndConditionsPage()),
+      );
+    } else {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => UnderDevelopingPage(title: title)),
+      );
+    }
   }
 
   @override
@@ -71,6 +87,7 @@ class _UserHomeState extends State<UserHome> {
                   child: Text('Terms & Conditions'),
                 ),
                 PopupMenuItem(value: 'About Us', child: Text('About Us')),
+                PopupMenuItem(value: 'Categories', child: Text('Categories')),
               ],
         ),
         actions: [
@@ -85,7 +102,6 @@ class _UserHomeState extends State<UserHome> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // 🔍 Search Bar
             Padding(
               padding: EdgeInsets.all(12.0),
               child: TextField(
@@ -103,8 +119,6 @@ class _UserHomeState extends State<UserHome> {
                 ),
               ),
             ),
-
-            // 📂 Category Title
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Align(
@@ -115,8 +129,6 @@ class _UserHomeState extends State<UserHome> {
                 ),
               ),
             ),
-
-            // 🧱 Category Grid
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: GridView.builder(
@@ -173,8 +185,6 @@ class _UserHomeState extends State<UserHome> {
                 },
               ),
             ),
-
-            // 🎉 Discount Banner
             StreamBuilder<DocumentSnapshot>(
               stream:
                   FirebaseFirestore.instance
@@ -230,8 +240,6 @@ class _UserHomeState extends State<UserHome> {
           ],
         ),
       ),
-
-      // 🧭 Bottom Navigation
       bottomNavigationBar: BottomNavigation(
         currentIndex: _currentIndex,
         onTap: _onTabTapped,
@@ -240,7 +248,6 @@ class _UserHomeState extends State<UserHome> {
   }
 }
 
-// 📥 Bottom Navigation
 class BottomNavigation extends StatelessWidget {
   final int currentIndex;
   final Function(int) onTap;
@@ -271,7 +278,6 @@ class BottomNavigation extends StatelessWidget {
   }
 }
 
-// 🧪 Dummy Category Page
 class DummyCategoryPage extends StatelessWidget {
   final String name;
 
@@ -291,7 +297,6 @@ class DummyCategoryPage extends StatelessWidget {
   }
 }
 
-// 🚧 Under Developing Page
 class UnderDevelopingPage extends StatelessWidget {
   final String? title;
 
@@ -301,7 +306,7 @@ class UnderDevelopingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title ?? 'Under Developing'),
+        title: Text(title ?? 'Under Development'),
         backgroundColor: Colors.orange,
       ),
       body: Center(
