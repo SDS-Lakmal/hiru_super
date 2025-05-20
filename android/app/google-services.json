@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "93275767384",
+    "project_id": "hirusuper-206ab",
+    "storage_bucket": "hirusuper-206ab.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:93275767384:android:ee01be725be75c421ac02d",
+        "android_client_info": {
+          "package_name": "com.example.hiru_super"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCspKBrfQ_bB3RWDcKe1AH6uCXfyJq-Seo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
