@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-// 👉 IMPORT the ContactUsPage and TermsAndConditionsPage
+// 👉 IMPORT custom pages
 import 'contact_us.dart';
 import 'terms_and_conditions.dart';
+import 'about_us.dart'; // ✅ New import for About Us page
 
 class UserHome extends StatefulWidget {
   @override
@@ -29,7 +30,7 @@ class _UserHomeState extends State<UserHome> {
     });
 
     if (index == 0) {
-      // Home page selected
+      // Home tab
     } else {
       Navigator.push(
         context,
@@ -48,6 +49,13 @@ class _UserHomeState extends State<UserHome> {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (_) => TermsAndConditionsPage()),
+      );
+    } else if (title == 'About Us') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => AboutUsPage(),
+        ), // ✅ Link to AboutUsPage
       );
     } else {
       Navigator.push(
@@ -87,7 +95,7 @@ class _UserHomeState extends State<UserHome> {
                   child: Text('Terms & Conditions'),
                 ),
                 PopupMenuItem(value: 'About Us', child: Text('About Us')),
-                PopupMenuItem(value: 'Categories', child: Text('Categories')),
+                // ✅ Removed: PopupMenuItem(value: 'Categories', child: Text('Categories')),
               ],
         ),
         actions: [
