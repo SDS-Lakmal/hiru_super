@@ -1,13 +1,12 @@
-// admin_upload.dart
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class AdminUpload extends StatefulWidget {
+class DiscountPage extends StatefulWidget {
   @override
-  _AdminUploadState createState() => _AdminUploadState();
+  _DiscountPageState createState() => _DiscountPageState();
 }
 
-class _AdminUploadState extends State<AdminUpload> {
+class _DiscountPageState extends State<DiscountPage> {
   final _formKey = GlobalKey<FormState>();
   final _percentageController = TextEditingController();
   final _minimumBillController = TextEditingController();
@@ -20,9 +19,9 @@ class _AdminUploadState extends State<AdminUpload> {
         'message':
             'Enjoy ${_percentageController.text}% OFF for bills above ${_minimumBillController.text}',
       });
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Discount updated!')));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Discount updated!')),
+      );
     }
   }
 
@@ -48,15 +47,13 @@ class _AdminUploadState extends State<AdminUpload> {
                 controller: _percentageController,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(labelText: "Discount Percentage"),
-                validator:
-                    (value) => value!.isEmpty ? 'Enter percentage' : null,
+                validator: (value) => value!.isEmpty ? 'Enter percentage' : null,
               ),
               TextFormField(
                 controller: _minimumBillController,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(labelText: "Minimum Bill"),
-                validator:
-                    (value) => value!.isEmpty ? 'Enter minimum bill' : null,
+                validator: (value) => value!.isEmpty ? 'Enter minimum bill' : null,
               ),
               SizedBox(height: 20),
               ElevatedButton(

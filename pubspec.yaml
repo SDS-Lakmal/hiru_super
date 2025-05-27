@@ -27,7 +27,6 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-  # ✅ Add this section to include your local image assets
   assets:
     - assets/images/fish.jpg
     - assets/images/meat.jpg
