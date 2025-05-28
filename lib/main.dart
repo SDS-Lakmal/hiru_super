@@ -4,15 +4,18 @@ import 'client/user_home.dart';
 import 'admin/discount.dart';
 import 'client/contact_us.dart';
 import 'client/terms_and_conditions.dart';
-import 'client/about_us.dart'; // <- ADD THIS
+import 'client/about_us.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
 }
-
+  
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
