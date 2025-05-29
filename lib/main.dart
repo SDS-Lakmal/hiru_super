@@ -7,9 +7,13 @@ import 'admin/discount.dart';
 import 'client/contact_us.dart';
 import 'client/terms_and_conditions.dart';
 import 'client/about_us.dart';
+<<<<<<< HEAD
 import 'client/user_login.dart';
 import 'client/welcome_page.dart';
 import 'firebase_options.dart';
+=======
+
+>>>>>>> 2e459c97b970ae4a46ae6bcb5307c141ae6c3be2
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +22,7 @@ void main() async {
   );
   runApp(const MyApp());
 }
-
+  
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

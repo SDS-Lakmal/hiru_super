@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AdminUpload extends StatefulWidget {
+  const AdminUpload({super.key});
+
   @override
   _AdminUploadState createState() => _AdminUploadState();
 }

@@ -7,6 +7,8 @@ import 'terms_and_conditions.dart';
 import 'about_us.dart'; // ✅ New import for About Us page
 
 class UserHome extends StatefulWidget {
+  const UserHome({super.key});
+
   @override
   _UserHomeState createState() => _UserHomeState();
 }
@@ -289,7 +291,7 @@ class BottomNavigation extends StatelessWidget {
 class DummyCategoryPage extends StatelessWidget {
   final String name;
 
-  DummyCategoryPage({required this.name});
+  const DummyCategoryPage({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -308,7 +310,7 @@ class DummyCategoryPage extends StatelessWidget {
 class UnderDevelopingPage extends StatelessWidget {
   final String? title;
 
-  UnderDevelopingPage({this.title});
+  const UnderDevelopingPage({super.key, this.title});
 
   @override
   Widget build(BuildContext context) {
