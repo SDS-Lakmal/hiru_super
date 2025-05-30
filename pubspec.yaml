@@ -36,3 +36,10 @@ flutter:
     - assets/images/fruit.jpg
     - assets/images/beverages.jpg
     - assets/images/grocery.jpg
+
+    - assets/images/balaya.jpg
+    - assets/images/fish_banner.jpg
+    - assets/images/cuttlefish.jpg    #fish_item images path
+    - assets/images/prawns.jpg
+    - assets/images/thalapath.jpg
+    - assets/images/map_image.jpg

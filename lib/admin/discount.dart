@@ -16,7 +16,10 @@ class _AdminUploadState extends State<AdminUpload> {
 
   void _updateDiscount() async {
     if (_formKey.currentState!.validate()) {
-      await FirebaseFirestore.instance.collection('discount').doc('banner').set({
+      await FirebaseFirestore.instance
+          .collection('discount')
+          .doc('banner')
+          .set({
         'percentage': int.parse(_percentageController.text),
         'minimumBill': int.parse(_minimumBillController.text),
         'message':
@@ -50,15 +53,15 @@ class _AdminUploadState extends State<AdminUpload> {
                 controller: _percentageController,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(labelText: "Discount Percentage"),
-                validator:
-                    (value) => value!.isEmpty ? 'Enter percentage' : null,
+                validator: (value) =>
+                    value!.isEmpty ? 'Enter percentage' : null,
               ),
               TextFormField(
                 controller: _minimumBillController,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(labelText: "Minimum Bill"),
-                validator:
-                    (value) => value!.isEmpty ? 'Enter minimum bill' : null,
+                validator: (value) =>
+                    value!.isEmpty ? 'Enter minimum bill' : null,
               ),
               SizedBox(height: 20),
               ElevatedButton(

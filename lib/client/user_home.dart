@@ -69,14 +69,13 @@ class _UserHomeState extends State<UserHome> {
 
   @override
   Widget build(BuildContext context) {
-    List<Map<String, String>> filteredCategories =
-        categories
-            .where(
-              (category) => category['name']!.toLowerCase().contains(
+    List<Map<String, String>> filteredCategories = categories
+        .where(
+          (category) => category['name']!.toLowerCase().contains(
                 searchQuery.toLowerCase(),
               ),
-            )
-            .toList();
+        )
+        .toList();
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -87,18 +86,17 @@ class _UserHomeState extends State<UserHome> {
         leading: PopupMenuButton<String>(
           icon: Icon(Icons.menu),
           onSelected: _navigateToMenuItem,
-          itemBuilder:
-              (BuildContext context) => [
-                PopupMenuItem(value: 'Settings', child: Text('Settings')),
-                PopupMenuItem(value: 'Profile', child: Text('Profile')),
-                PopupMenuItem(value: 'Contact Us', child: Text('Contact Us')),
-                PopupMenuItem(
-                  value: 'Terms & Conditions',
-                  child: Text('Terms & Conditions'),
-                ),
-                PopupMenuItem(value: 'About Us', child: Text('About Us')),
-                // ✅ Removed: PopupMenuItem(value: 'Categories', child: Text('Categories')),
-              ],
+          itemBuilder: (BuildContext context) => [
+            PopupMenuItem(value: 'Settings', child: Text('Settings')),
+            PopupMenuItem(value: 'Profile', child: Text('Profile')),
+            PopupMenuItem(value: 'Contact Us', child: Text('Contact Us')),
+            PopupMenuItem(
+              value: 'Terms & Conditions',
+              child: Text('Terms & Conditions'),
+            ),
+            PopupMenuItem(value: 'About Us', child: Text('About Us')),
+            // ✅ Removed: PopupMenuItem(value: 'Categories', child: Text('Categories')),
+          ],
         ),
         actions: [
           IconButton(
@@ -158,8 +156,8 @@ class _UserHomeState extends State<UserHome> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder:
-                              (_) => DummyCategoryPage(name: category['name']!),
+                          builder: (_) =>
+                              DummyCategoryPage(name: category['name']!),
                         ),
                       );
                     },
@@ -196,11 +194,10 @@ class _UserHomeState extends State<UserHome> {
               ),
             ),
             StreamBuilder<DocumentSnapshot>(
-              stream:
-                  FirebaseFirestore.instance
-                      .collection('discount')
-                      .doc('banner')
-                      .snapshots(),
+              stream: FirebaseFirestore.instance
+                  .collection('discount')
+                  .doc('banner')
+                  .snapshots(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) return CircularProgressIndicator();
                 var data = snapshot.data!.data() as Map<String, dynamic>;
