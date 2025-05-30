@@ -6,9 +6,6 @@ import 'client/contact_us.dart';
 import 'client/terms_and_conditions.dart';
 import 'client/about_us.dart';
 
-import 'client/fish_item.dart';
-import 'client/payment_select.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
