@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-// ඔබේ screen import කරන්න
+// Client and Admin Pages
 import 'client/user_home.dart';
 import 'admin/discount.dart';
 import 'client/contact_us.dart';
 import 'client/terms_and_conditions.dart';
 import 'client/about_us.dart';
-//import 'client/user_login.dart';
-//import 'client/welcome_page.dart';
-import 'firebase_options.dart';
+
+// Auth and Settings Pages
+import 'client/signup_page.dart';
+import 'client/settings_page.dart';
+import 'client/forgot_password_page.dart';
+import 'client/welcome_buttons_page.dart'; // Make sure this is imported
+
+// Global notifier to toggle dark/light theme
+final ValueNotifier<ThemeMode> themeNotifier = ValueNotifier(ThemeMode.light);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp(); // Firebase initialization
   runApp(const MyApp());
 }
 
@@ -22,19 +28,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Grocery App',
-      theme: ThemeData(primarySwatch: Colors.green),
-      initialRoute: '/home',
-      routes: {
-        // '/': (context) => const WelcomePage(),
-        // '/login': (context) => const LoginScreen(),
-        '/admin': (context) => AdminUpload(),
-        '/contact': (context) => ContactUsPage(),
-        '/terms': (context) => TermsAndConditionsPage(),
-        '/about': (context) => AboutUsPage(),
-        '/home': (context) => UserHome(),
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: themeNotifier,
+      builder: (context, currentTheme, _) {
+        return MaterialApp(
+          title: 'Supermarket App',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData.light(),
+          darkTheme: ThemeData.dark(),
+          themeMode: currentTheme,
+          initialRoute: '/', // Optional if you want to start at WelcomeButtonsPage
+          routes: {
+            '/': (context) => const WelcomeButtonsPage(),
+            '/signup': (context) => const SignUpPage(),
+            
+            '/forgotPassword': (context) => const ForgotPasswordPage(),
+          },
+        );
       },
     );
   }
