@@ -13,39 +13,31 @@ class WelcomeButtonsPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset('assets/sun.png', height: 150),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'HIRU SUPER',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 40),
-            SizedBox(
-              width: 200,
-              child: ElevatedButton(
-                onPressed: () {
-                  // Navigate to Sign In page
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.yellow[700],
-                  foregroundColor: Colors.black,
-                  padding: EdgeInsets.symmetric(vertical: 15),
-                ),
-                child: Text('Sign In'),
-              ),
+            const SizedBox(height: 40),
+            YellowButton(
+              text: 'Sign In',
+              onPressed: () {
+                Navigator.pushNamed(context, '/login');
+              },
             ),
-            SizedBox(height: 15),
-            SizedBox(width: 200,
-              child: ElevatedButton(
-                onPressed: () {
-                  // Navigate to Sign Up page
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.yellow[700],
-                  foregroundColor: Colors.black,
-                  padding: EdgeInsets.symmetric(vertical: 15),
-                ),
-                child: Text('Sign Up'),
-              ),
+            const SizedBox(height: 15),
+            YellowButton(
+              text: 'Sign Up',
+              onPressed: () {
+                Navigator.pushNamed(context, '/signup');
+              },
+            ),
+            const SizedBox(height: 15),
+            YellowButton(
+              text: 'Admin Login',
+              onPressed: () {
+                Navigator.pushNamed(context, '/signup'); // or another page
+              },
             ),
           ],
         ),
@@ -54,3 +46,30 @@ class WelcomeButtonsPage extends StatelessWidget {
   }
 }
 
+class YellowButton extends StatelessWidget {
+  final String text;
+  final VoidCallback onPressed;
+
+  const YellowButton({
+    super.key,
+    required this.text,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 200,
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.yellow[700],
+          foregroundColor: Colors.black,
+          padding: const EdgeInsets.symmetric(vertical: 15),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+        ),
+        child: Text(text),
+      ),
+    );
+  }
+}
