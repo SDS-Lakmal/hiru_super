@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 // 👉 IMPORT custom pages
 import 'contact_us.dart';
 import 'terms_and_conditions.dart';
-import 'about_us.dart'; // ✅ New import for About Us page
+import 'about_us.dart';
 
 class UserHome extends StatefulWidget {
   const UserHome({super.key});
@@ -53,12 +53,7 @@ class _UserHomeState extends State<UserHome> {
         MaterialPageRoute(builder: (_) => TermsAndConditionsPage()),
       );
     } else if (title == 'About Us') {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (_) => AboutUsPage(),
-        ), // ✅ Link to AboutUsPage
-      );
+      Navigator.push(context, MaterialPageRoute(builder: (_) => AboutUsPage()));
     } else {
       Navigator.push(
         context,
@@ -97,7 +92,6 @@ class _UserHomeState extends State<UserHome> {
                   child: Text('Terms & Conditions'),
                 ),
                 PopupMenuItem(value: 'About Us', child: Text('About Us')),
-                // ✅ Removed: PopupMenuItem(value: 'Categories', child: Text('Categories')),
               ],
         ),
         actions: [
@@ -154,15 +148,6 @@ class _UserHomeState extends State<UserHome> {
                 itemBuilder: (context, index) {
                   final category = filteredCategories[index];
                   return GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder:
-                              (_) => DummyCategoryPage(name: category['name']!),
-                        ),
-                      );
-                    },
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -284,25 +269,6 @@ class BottomNavigation extends StatelessWidget {
       ],
       selectedItemColor: Colors.orange,
       unselectedItemColor: Colors.grey,
-    );
-  }
-}
-
-class DummyCategoryPage extends StatelessWidget {
-  final String name;
-
-  const DummyCategoryPage({super.key, required this.name});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("$name Page")),
-      body: Center(
-        child: Text(
-          "$name page content coming soon!",
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
     );
   }
 }
