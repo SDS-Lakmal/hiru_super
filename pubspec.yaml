@@ -37,8 +37,9 @@ flutter:
     - assets/images/beverages.jpg
     - assets/images/grocery.jpg
 
-     - assets/fish_banner.jpg
-     - assets/thalapath.jpg
-     - assets/balaya.jpg
-     - assets/prawns.jpg
-     - assets/cuttlefish.jpg
+     - assets/images/fish_banner.jpg
+     - assets/images/thalapath.jpg
+     - assets/images/balaya.jpg
+     - assets/images/prawns.jpg
+     - assets/images/cuttlefish.jpg
+     - assets/images/map_image.jpg
