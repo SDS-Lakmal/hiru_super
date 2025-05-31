@@ -5,9 +5,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'contact_us.dart';
 import 'terms_and_conditions.dart';
 import 'about_us.dart';
-import 'fish_item.dart'; // ✅ Import fish_item.dart
-// ignore: unused_import
-import 'payment_select.dart';
+import 'grocery_page.dart';
+import 'cart_page.dart';
+//import 'cart_items.dart';
 
 class UserHome extends StatefulWidget {
   const UserHome({super.key});
@@ -35,11 +35,22 @@ class _UserHomeState extends State<UserHome> {
     });
 
     if (index == 0) {
-      // Home tab
-    } else {
+      // Home tab - stay on current page
+    } else if (index == 1) {
+      Navigator.push(context, MaterialPageRoute(builder: (_) => CartPage()));
+    } else if (index == 2) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (_) => UnderDevelopingPage()),
+        MaterialPageRoute(
+          builder: (_) => const UnderDevelopingPage(title: 'Settings'),
+        ),
+      );
+    } else if (index == 3) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => const UnderDevelopingPage(title: 'Notification'),
+        ),
       );
     }
   }
@@ -48,15 +59,18 @@ class _UserHomeState extends State<UserHome> {
     if (title == 'Contact Us') {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (_) => ContactUsPage()),
+        MaterialPageRoute(builder: (_) => const ContactUsPage()),
       );
     } else if (title == 'Terms & Conditions') {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (_) => TermsAndConditionsPage()),
+        MaterialPageRoute(builder: (_) => const TermsAndConditionsPage()),
       );
     } else if (title == 'About Us') {
-      Navigator.push(context, MaterialPageRoute(builder: (_) => AboutUsPage()));
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => const AboutUsPage()),
+      );
     } else {
       Navigator.push(
         context,
@@ -80,13 +94,13 @@ class _UserHomeState extends State<UserHome> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.yellow[700],
-        title: Text("Home"),
+        title: const Text("Home"),
         centerTitle: true,
         leading: PopupMenuButton<String>(
-          icon: Icon(Icons.menu),
+          icon: const Icon(Icons.menu),
           onSelected: _navigateToMenuItem,
           itemBuilder:
-              (BuildContext context) => [
+              (BuildContext context) => const [
                 PopupMenuItem(value: 'Settings', child: Text('Settings')),
                 PopupMenuItem(value: 'Profile', child: Text('Profile')),
                 PopupMenuItem(value: 'Contact Us', child: Text('Contact Us')),
@@ -99,7 +113,7 @@ class _UserHomeState extends State<UserHome> {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.admin_panel_settings),
+            icon: const Icon(Icons.admin_panel_settings),
             onPressed: () {
               Navigator.pushNamed(context, '/admin');
             },
@@ -110,7 +124,7 @@ class _UserHomeState extends State<UserHome> {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.all(12.0),
+              padding: const EdgeInsets.all(12.0),
               child: TextField(
                 onChanged: (value) {
                   setState(() {
@@ -119,14 +133,14 @@ class _UserHomeState extends State<UserHome> {
                 },
                 decoration: InputDecoration(
                   hintText: 'What are you looking for?',
-                  prefixIcon: Icon(Icons.search),
+                  prefixIcon: const Icon(Icons.search),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
               ),
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Align(
                 alignment: Alignment.centerLeft,
@@ -140,9 +154,9 @@ class _UserHomeState extends State<UserHome> {
               padding: const EdgeInsets.all(12.0),
               child: GridView.builder(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: filteredCategories.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 12,
                   mainAxisSpacing: 12,
@@ -152,17 +166,17 @@ class _UserHomeState extends State<UserHome> {
                   final category = filteredCategories[index];
                   return GestureDetector(
                     onTap: () {
-                      final name = category['name']!;
-                      if (name == 'Fish') {
+                      if (category['name'] == 'Grocery') {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (_) => FishApp()),
+                          MaterialPageRoute(builder: (_) => GroceryPage()),
                         );
                       } else {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => DummyCategoryPage(name: name),
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              '${category['name']} is not available yet.',
+                            ),
                           ),
                         );
                       }
@@ -171,7 +185,7 @@ class _UserHomeState extends State<UserHome> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.grey[100],
-                        boxShadow: [
+                        boxShadow: const [
                           BoxShadow(color: Colors.black12, blurRadius: 5),
                         ],
                       ),
@@ -187,10 +201,10 @@ class _UserHomeState extends State<UserHome> {
                               fit: BoxFit.cover,
                             ),
                           ),
-                          SizedBox(height: 8),
+                          const SizedBox(height: 8),
                           Text(
                             category['name']!,
-                            style: TextStyle(fontWeight: FontWeight.w600),
+                            style: const TextStyle(fontWeight: FontWeight.w600),
                           ),
                         ],
                       ),
@@ -206,16 +220,21 @@ class _UserHomeState extends State<UserHome> {
                       .doc('banner')
                       .snapshots(),
               builder: (context, snapshot) {
-                if (!snapshot.hasData) return CircularProgressIndicator();
+                if (!snapshot.hasData) {
+                  return const CircularProgressIndicator();
+                }
                 var data = snapshot.data!.data() as Map<String, dynamic>;
                 return Container(
                   width: double.infinity,
-                  margin: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                  padding: EdgeInsets.all(16),
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 16,
+                  ),
+                  padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     color: Colors.yellow[700],
                     borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         color: Colors.black26,
                         blurRadius: 4,
@@ -236,7 +255,7 @@ class _UserHomeState extends State<UserHome> {
                       ),
                       Text(
                         '${data['percentage']}% OFF',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                           color: Colors.black87,
@@ -244,7 +263,10 @@ class _UserHomeState extends State<UserHome> {
                       ),
                       Text(
                         'for bills above ${data['minimumBill']}/=',
-                        style: TextStyle(fontSize: 16, color: Colors.black87),
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: Colors.black87,
+                        ),
                       ),
                     ],
                   ),
@@ -292,25 +314,6 @@ class BottomNavigation extends StatelessWidget {
   }
 }
 
-class DummyCategoryPage extends StatelessWidget {
-  final String name;
-
-  const DummyCategoryPage({super.key, required this.name});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("$name Page")),
-      body: Center(
-        child: Text(
-          "$name page content coming soon!",
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
-    );
-  }
-}
-
 class UnderDevelopingPage extends StatelessWidget {
   final String? title;
 
@@ -322,8 +325,12 @@ class UnderDevelopingPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(title ?? 'Under Development'),
         backgroundColor: Colors.orange,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
+        ),
       ),
-      body: Center(
+      body: const Center(
         child: Text(
           'This feature is under development!',
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

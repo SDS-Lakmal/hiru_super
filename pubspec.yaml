@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
-  firebase_auth: ^4.9.0 
+  firebase_auth: ^4.9.0
 
   # ✅ Firebase packages
   firebase_core: ^2.30.0
@@ -36,10 +36,12 @@ flutter:
     - assets/images/fruit.jpg
     - assets/images/beverages.jpg
     - assets/images/grocery.jpg
-
-     - assets/images/fish_banner.jpg
-     - assets/images/thalapath.jpg
-     - assets/images/balaya.jpg
-     - assets/images/prawns.jpg
-     - assets/images/cuttlefish.jpg
-     - assets/images/map_image.jpg
+    - assets/images/fish_banner.jpg
+    - assets/images/thalapath.jpg
+    - assets/images/balaya.jpg
+    - assets/images/prawns.jpg
+    - assets/images/cuttlefish.jpg
+    - assets/images/map_image.jpg
+    - assets/images/flour.jpg
+    - assets/images/rice.jpg
+    - assets/images/suger.jpg
