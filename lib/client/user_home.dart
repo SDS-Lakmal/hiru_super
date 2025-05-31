@@ -5,6 +5,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'contact_us.dart';
 import 'terms_and_conditions.dart';
 import 'about_us.dart';
+import 'fish_item.dart'; // ✅ Import fish_item.dart
+// ignore: unused_import
+import 'payment_select.dart';
 
 class UserHome extends StatefulWidget {
   const UserHome({super.key});
@@ -148,6 +151,22 @@ class _UserHomeState extends State<UserHome> {
                 itemBuilder: (context, index) {
                   final category = filteredCategories[index];
                   return GestureDetector(
+                    onTap: () {
+                      final name = category['name']!;
+                      if (name == 'Fish') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => FishApp()),
+                        );
+                      } else {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => DummyCategoryPage(name: name),
+                          ),
+                        );
+                      }
+                    },
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -269,6 +288,25 @@ class BottomNavigation extends StatelessWidget {
       ],
       selectedItemColor: Colors.orange,
       unselectedItemColor: Colors.grey,
+    );
+  }
+}
+
+class DummyCategoryPage extends StatelessWidget {
+  final String name;
+
+  const DummyCategoryPage({super.key, required this.name});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("$name Page")),
+      body: Center(
+        child: Text(
+          "$name page content coming soon!",
+          style: TextStyle(fontSize: 20),
+        ),
+      ),
     );
   }
 }
